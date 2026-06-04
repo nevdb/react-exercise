@@ -1,61 +1,40 @@
-import { useEffect, useState } from "react";
 import Places from "./Places.jsx";
 import ErrorPage from "./Error.jsx";
 import { sortPlacesByDistance } from "../loc.js";
 import { fetchAvailablePlaces } from "../http.js";
+import { useFetch } from "../hooks/useFetch.js";
+
+async function fetchSortedPlaces() {
+  const places = await fetchAvailablePlaces();
+
+  if (!navigator.geolocation) {
+    return places;
+  }
+
+  return new Promise((resolve) => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const sortedPlaces = sortPlacesByDistance(
+          places,
+          position.coords.latitude,
+          position.coords.longitude,
+        );
+
+        resolve(sortedPlaces);
+      },
+      () => {
+        resolve(places);
+      },
+    );
+  });
+}
 
 export default function AvailablePlaces({ onSelectPlace }) {
-  // Fetch available places from backed API
-  const [isFetching, setIsFetching] = useState(false);
-  const [availablePlaces, setAvailablePlaces] = useState([]);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    async function fetchPlaces() {
-      setIsFetching(true);
-      try {
-        // const response = await fetch("http://localhost:3000/places");
-        // const resData = await response.json();
-
-        // if (!response.ok) {
-        //   throw new Error(resData.message || "Failed to fetch places.");
-        // }
-
-        const places = await fetchAvailablePlaces();
-
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const sortedPlaces = sortPlacesByDistance(
-              places,
-              position.coords.latitude,
-              position.coords.longitude,
-            );
-            setAvailablePlaces(sortedPlaces);
-            setIsFetching(false);
-          },
-          () => {
-            // Geolocation denied or unavailable — show unsorted places
-            setAvailablePlaces(places);
-            setIsFetching(false);
-          },
-        );
-      } catch (error) {
-        setError({
-          message:
-            error.message || "Could not fetch places, please try again later!",
-        });
-        setIsFetching(false);
-      }
-    }
-
-    fetchPlaces();
-  }, []);
-
-  //   useEffect(() => {
-  //     fetch("http://localhost:3000/user-places")
-  //       .then((res) => res.json())
-  //       .then(console.log);
-  //   }, []);
+  const {
+    isFetching,
+    error,
+    fetchedData: availablePlaces,
+  } = useFetch(fetchSortedPlaces, []);
 
   if (error) {
     return <ErrorPage title="An error occurred!" message={error.message} />;
