@@ -85,7 +85,7 @@ describe("ProgressBar", () => {
     expect(progress).toHaveAttribute("value", "1000");
 
     // Spy on clearInterval
-    const clearIntervalSpy = vi.spyOn(global, "clearInterval");
+    const clearIntervalSpy = vi.spyOn(window, "clearInterval");
 
     unmount();
 

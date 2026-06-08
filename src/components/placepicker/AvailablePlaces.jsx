@@ -1,8 +1,8 @@
 import Places from "./Places.jsx";
 import ErrorPage from "./Error.jsx";
-import { sortPlacesByDistance } from "../loc.js";
-import { fetchAvailablePlaces } from "../http.js";
-import { useFetch } from "../hooks/useFetch.js";
+import { sortPlacesByDistance } from "../../loc.js";
+import { fetchAvailablePlaces } from "../../http.js";
+import { useFetch } from "../../hooks/useFetch.js";
 
 async function fetchSortedPlaces() {
   const places = await fetchAvailablePlaces();
@@ -12,6 +12,17 @@ async function fetchSortedPlaces() {
   }
 
   return new Promise((resolve) => {
+    let didResolve = false;
+
+    const finish = (result) => {
+      if (didResolve) {
+        return;
+      }
+
+      didResolve = true;
+      resolve(result);
+    };
+
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const sortedPlaces = sortPlacesByDistance(
@@ -20,12 +31,16 @@ async function fetchSortedPlaces() {
           position.coords.longitude,
         );
 
-        resolve(sortedPlaces);
+        finish(sortedPlaces);
       },
       () => {
-        resolve(places);
+        finish(places);
       },
+      { timeout: 5000 },
     );
+
+    // If geolocation stalls (e.g. user ignores browser prompt), render unsorted places.
+    setTimeout(() => finish(places), 5500);
   });
 }
 
