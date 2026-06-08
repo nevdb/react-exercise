@@ -75,7 +75,7 @@ export default function Summary({ userAnswers }) {
                 <p className="my-1 text-base text-violet-800">
                   {question.text}
                 </p>
-                <p className={`"my-1 text-base text-violet-950" ${cssClass}`}>
+                <p className={`my-1 text-base text-violet-950 ${cssClass}`}>
                   {answer ?? "Skipped"}
                 </p>
               </li>
