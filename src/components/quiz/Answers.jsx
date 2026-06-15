@@ -11,20 +11,23 @@ export default function Answers({
         let cssClasses = "";
 
         if (answerState === "answered" && isSelected) {
-          cssClasses = "bg-amber-500 text-stone-950 ";
+          cssClasses = "!bg-amber-400 !text-slate-950";
         }
 
         if (
           (answerState === "correct" || answerState === "wrong") &&
           isSelected
         ) {
-          cssClasses = answerState;
+          cssClasses =
+            answerState === "correct"
+              ? "!bg-emerald-500 !text-white"
+              : "!bg-rose-500 !text-white";
         }
 
         return (
           <li key={answer} className="w-[90%] mx-auto">
             <button
-              className={` inline-block w-full  text-sm px-8 py-4 rounded-xl bg-indigo-600 hover:bg-amber-500 hover:text-white disabled:opacity-60 disabled:cursor-not-allowed ${cssClasses}`}
+              className={`inline-block w-full rounded-xl border border-slate-300/20 bg-slate-800 px-8 py-4 text-sm font-semibold text-slate-100 transition hover:border-[#3531cf]/40 hover:bg-[#3531cf]/20 disabled:cursor-not-allowed disabled:opacity-60 ${cssClasses}`}
               onClick={() => onSelect(answer)}
               disabled={answerState !== ""}
             >

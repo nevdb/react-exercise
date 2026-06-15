@@ -21,5 +21,12 @@ export default function QuestionTimer({ timeout, onTimeout }) {
     };
   }, []);
 
-  return <progress id="question-time" max={timeout} value={remainingTime} />;
+  return (
+    <progress
+      id="question-time"
+      max={timeout}
+      value={remainingTime}
+      className="h-2 w-full overflow-hidden rounded-full [&::-webkit-progress-bar]:bg-slate-300/40 [&::-webkit-progress-value]:bg-[#f5ff56] [&::-moz-progress-bar]:bg-[#f5ff56]"
+    />
+  );
 }

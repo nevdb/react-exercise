@@ -1,5 +1,4 @@
 import { useState, useRef, useCallback } from "react";
-import "./../App.css";
 import Modal from "../components/Modal.jsx";
 import DeleteConfirmation from "../components/placepicker/DeleteConfirmation.jsx";
 import Places from "../components/placepicker/Places.jsx";
@@ -108,15 +107,28 @@ function PlacePicker() {
         />
       </Modal>
 
-      <header>
-        <img src={logoImg} alt="Stylized globe" />
-        <h1>PlacePicker</h1>
-        <p>
-          Create your personal collection of places you would like to visit or
-          you have visited.
-        </p>
+      <header className="mb-8 rounded-3xl border border-slate-300/15 bg-slate-900/70 p-6 md:p-8">
+        <div className="flex flex-col items-center gap-4 text-center md:flex-row md:text-left">
+          <img
+            src={logoImg}
+            alt="Stylized globe"
+            className="h-16 w-auto rounded-xl bg-slate-950/60 p-2"
+          />
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#d8dcff]">
+              Experience Studio
+            </p>
+            <h1 className="mt-2 text-3xl font-bold text-white md:text-4xl">
+              PlacePicker
+            </h1>
+            <p className="mt-2 max-w-2xl text-slate-300">
+              Create your personal collection of places you would like to visit
+              or you have visited.
+            </p>
+          </div>
+        </div>
       </header>
-      <main>
+      <main className="space-y-8">
         {error && (
           <Error
             title="An error occurred!"

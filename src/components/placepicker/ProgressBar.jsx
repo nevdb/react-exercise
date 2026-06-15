@@ -16,5 +16,11 @@ export default function ProgressBar({ timer }) {
     };
   }, []);
 
-  return <progress value={remainingTime} max={timer} />;
+  return (
+    <progress
+      value={remainingTime}
+      max={timer}
+      className="mt-1 h-2 w-full overflow-hidden rounded-full [&::-webkit-progress-bar]:bg-slate-300 [&::-webkit-progress-value]:bg-[#3531cf] [&::-moz-progress-bar]:bg-[#3531cf]"
+    />
+  );
 }

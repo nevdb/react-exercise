@@ -71,11 +71,11 @@ export default function QuizContent() {
   }
 
   return (
-    <div className="max-w-3xl m-auto p-8 bg-violet-500 rounded-lg text-center">
+    <div className="mx-auto max-w-3xl rounded-3xl border border-slate-300/15 bg-slate-900/70 p-6 text-center md:p-8">
       <div id="question">
         <Fragment key={activeQuestionIndex}>
           <QuestionTimer timeout={10000} onTimeout={handleSkipAnswer} />
-          <h2 className="text-amber-100">
+          <h2 className="mt-4 text-xl font-semibold text-white md:text-2xl">
             {QUESTIONS[activeQuestionIndex].text}
           </h2>
           <Answers

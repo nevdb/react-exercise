@@ -57,12 +57,12 @@ export default function Counter({ initialCount }) {
   }, []);
 
   return (
-    <section className="p-8 border border-teal-700 rounded-md">
-      <p className="block mb-4 text-sm text-teal-500 text-center">
+    <section className="rounded-3xl border border-slate-300/20 bg-slate-900/70 p-6 md:p-8">
+      <p className="mb-5 block text-center text-sm text-slate-300">
         The initial counter value was <strong>{initialCount}</strong>. It{" "}
         <strong>is {initialCountIsPrime ? "a" : "not a"}</strong> prime number.
       </p>
-      <p className="flex gap-4 justify-center items-center mx-auto text-2xl">
+      <p className="mx-auto flex items-center justify-center gap-4 text-2xl">
         <IconButton icon={MinusIcon} onClick={handleDecrement}>
           Decrement
         </IconButton>

@@ -28,10 +28,10 @@ class UsersList extends Component {
     const usersList = this.props.users ?? [];
 
     return (
-      <div className="my-8 mx-auto bg-white p-4 rounded-[12px] max-w-[40rem] text-center">
+      <div className="mx-auto w-full max-w-3xl rounded-3xl border border-slate-300/20 bg-slate-900/65 p-5 text-center">
         <button
           onClick={this.toggleUsersHandler.bind(this)}
-          className="font-inherit cursor-pointer bg-rose-900 text-rose border border-rose-900 rounded-xl py-3 px-8 hover:bg-rose-700"
+          className="cursor-pointer rounded-full bg-[#f5ff56] px-5 py-2 text-sm font-semibold text-slate-950 transition hover:bg-[#e9f73a]"
         >
           {this.state.showUsers ? "Hide" : "Show"} Users
         </button>
@@ -44,7 +44,7 @@ class UsersList extends Component {
               ))}
             </ul>
           ) : (
-            <p className="mt-4 text-slate-600">No users found.</p>
+            <p className="mt-4 text-slate-300">No users found.</p>
           ))}
       </div>
     );

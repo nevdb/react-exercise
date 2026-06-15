@@ -5,7 +5,7 @@ import { Component } from "react";
 class User extends Component {
   render() {
     return (
-      <li className="w-auto my-4 px-3 py-2 rounded-xl font-inherit cursor-pointer bg-rose-900 text-white hover:bg-rose-700">
+      <li className="mx-auto my-3 w-full max-w-md rounded-xl border border-slate-300/20 bg-slate-950/65 px-3 py-2 text-slate-100 transition hover:border-[#3531cf]/40 hover:bg-slate-900">
         {this.props.name}
       </li>
     );

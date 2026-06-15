@@ -1,60 +1,34 @@
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
 
 export default function NavBar() {
-  const [open, setOpen] = useState(false);
-
-  const linkBase = "px-3 py-2 rounded hover:bg-gray-100 hover:text-gray-700";
-  const active =
-    "bg-amber-600 text-white hover:bg-blue-700  focus:ring-blue-300";
-  const inactive = "text-gray-300";
+  const linkBase =
+    "block rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200";
+  const active = " text-yellow-light  focus:ring-blue-300";
+  const inactive =
+    "text-slate-200 hover:bg-slate-100/10 hover:text-yellow-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#3531cf]/70";
 
   return (
-    <header className="border-b">
+    <header className="sticky top-0 z-50 border-b border-slate-200/10 bg-slate-950/70 backdrop-blur-md ">
       {/* Skip link for keyboard users */}
       <a
         href="#main"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-white border rounded px-3 py-2"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 rounded-md border border-slate-600 bg-slate-900 px-3 py-2 text-sm text-slate-100"
       >
         Skip to content
       </a>
 
       <nav
-        className="max-w-6xl mx-auto px-4"
+        className="mx-auto w-full max-w-6xl px-4"
         aria-label="Primary navigation"
         role="navigation"
       >
-        <div className="flex items-center justify-between gap-1 h-14">
-          <div className="font-semibold">MyApp</div>
-
-          {/* Mobile toggle */}
-          <button
-            className="sm:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-amber-500"
-            aria-expanded={open}
-            aria-controls="primary-menu"
-            onClick={() => setOpen((v) => !v)}
-          >
-            <span className="sr-only">Toggle navigation</span>
-            {/* Simple hamburger icon */}
-            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                fill="currentColor"
-                d="M3 6h18M3 12h18M3 18h18"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
+        <div className="flex min-h-16 items-center justify-between gap-3 py-2">
+          <div className="text-base font-bold tracking-[0.16em] text-white">
+            TIETO INSPIRED
+          </div>
 
           {/* Links */}
-          <ul
-            id="primary-menu"
-            className={`${
-              open ? "block" : "hidden"
-            } sm:flex gap-1 items-center`}
-            onClick={() => setOpen(false)}
-          >
+          <ul id="primary-menu" className="flex items-center gap-1">
             <li>
               <NavLink
                 to="/"

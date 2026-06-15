@@ -12,7 +12,11 @@ class ErrorBoundary extends Component {
   }
   render() {
     if (this.state.hasError) {
-      return <p>Somethinf went wrong!</p>;
+      return (
+        <p className="mx-auto mt-4 w-full max-w-3xl rounded-xl border border-rose-300/40 bg-rose-950/40 px-4 py-3 text-sm text-rose-100">
+          Something went wrong!
+        </p>
+      );
     }
     return this.props.children;
   }
