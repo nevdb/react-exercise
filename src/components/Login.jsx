@@ -1,6 +1,9 @@
 import { useRef } from "react";
+import { useState } from "react";
 
 export default function Login() {
+  const [emailIsInvalid, setEmailIsInvalid] = useState(false);
+
   const email = useRef();
   const password = useRef();
 
@@ -10,7 +13,12 @@ export default function Login() {
     const enteredEmail = email.current.value;
     const enteredPassword = password.current.value;
 
-    console.log(enteredEmail, enteredPassword);
+    const emailIsValid = enteredEmail.includes("@");
+
+    if (!emailIsValid) {
+      setEmailIsInvalid(true);
+      return;
+    }
   }
 
   return (
@@ -35,6 +43,9 @@ export default function Login() {
             className="w-full rounded-xl border border-slate-400/35 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-[#3531cf] focus:ring-2 focus:ring-[#3531cf]/30"
             ref={email}
           />
+          <div className="text-red-600">
+            {emailIsInvalid && <p>Please enter a valid email address! </p>}
+          </div>
         </div>
 
         <div>
