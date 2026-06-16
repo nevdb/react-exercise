@@ -1,16 +1,47 @@
-import { useRef } from "react";
+import { useState } from "react";
 
 export default function Login() {
-  const email = useRef();
-  const password = useRef();
+  // const [enteredEmail, setEnteredEmail] = useState("");
+  // const [enteredPassword, setEnteredPassword] = useState("");
+
+  const [enteredValues, setEnteredValues] = useState({
+    email: "",
+    password: "",
+  });
+
+  const [didEdit, setDidEdit] = useState({
+    email: false,
+    password: false,
+  });
+
+  const emailIsNotValid = didEdit.email && !enteredValues.email.includes("@");
 
   function handleSubmit(event) {
     event.preventDefault();
+    console.log("Submitted!", enteredValues);
 
-    const enteredEmail = email.current.value;
-    const enteredPassword = password.current.value;
+    setEnteredValues({
+      email: "",
+      password: "",
+    });
+  }
 
-    console.log(enteredEmail, enteredPassword);
+  function handleInputChange(identifier, value) {
+    setEnteredValues((prevValues) => ({
+      ...prevValues,
+      [identifier]: value,
+    }));
+    setDidEdit((prevEdit) => ({
+      ...prevEdit,
+      [identifier]: false,
+    }));
+  }
+
+  function handleInputBlur(identifier) {
+    setDidEdit((prevEdit) => ({
+      ...prevEdit,
+      [identifier]: true,
+    }));
   }
 
   return (
@@ -32,9 +63,14 @@ export default function Login() {
             id="email"
             type="email"
             name="email"
+            onBlur={() => handleInputBlur("email")}
             className="w-full rounded-xl border border-slate-400/35 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-[#3531cf] focus:ring-2 focus:ring-[#3531cf]/30"
-            ref={email}
+            onChange={(event) => handleInputChange("email", event.target.value)}
+            value={enteredValues.email}
           />
+          <div className="text-red-600">
+            {emailIsNotValid && <p>Please enter a valid email address!</p>}
+          </div>
         </div>
 
         <div>
@@ -49,7 +85,10 @@ export default function Login() {
             type="password"
             name="password"
             className="w-full rounded-xl border border-slate-400/35 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-[#3531cf] focus:ring-2 focus:ring-[#3531cf]/30"
-            ref={password}
+            onChange={(event) =>
+              handleInputChange("password", event.target.value)
+            }
+            value={enteredValues.password}
           />
         </div>
       </div>
