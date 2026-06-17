@@ -1,4 +1,5 @@
 import { useState } from "react";
+import BaseInput from "./BaseInput";
 
 export default function Login() {
   // const [enteredEmail, setEnteredEmail] = useState("");
@@ -15,6 +16,8 @@ export default function Login() {
   });
 
   const emailIsNotValid = didEdit.email && !enteredValues.email.includes("@");
+  const passwordIsInvalid =
+    didEdit.password && enteredValues.password.trim().length < 6;
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -52,45 +55,27 @@ export default function Login() {
       <h2 className="text-xl font-semibold text-white">Member Login</h2>
 
       <div className="mt-4 space-y-4">
-        <div>
-          <label
-            htmlFor="email"
-            className="mb-1 block text-xs font-semibold uppercase tracking-[0.15em] text-slate-300"
-          >
-            Email
-          </label>
-          <input
-            id="email"
-            type="email"
-            name="email"
-            onBlur={() => handleInputBlur("email")}
-            className="w-full rounded-xl border border-slate-400/35 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-[#3531cf] focus:ring-2 focus:ring-[#3531cf]/30"
-            onChange={(event) => handleInputChange("email", event.target.value)}
-            value={enteredValues.email}
-          />
-          <div className="text-red-600">
-            {emailIsNotValid && <p>Please enter a valid email address!</p>}
-          </div>
-        </div>
+        <BaseInput
+          label="Email"
+          id="email"
+          type="email"
+          name="email"
+          onBlur={() => handleInputBlur("email")}
+          onChange={(event) => handleInputChange("email", event.target.value)}
+          value={enteredValues.email}
+          error={emailIsNotValid && "Please enter a valid email!"}
+        />
 
-        <div>
-          <label
-            htmlFor="password"
-            className="mb-1 block text-xs font-semibold uppercase tracking-[0.15em] text-slate-300"
-          >
-            Password
-          </label>
-          <input
-            id="password"
-            type="password"
-            name="password"
-            className="w-full rounded-xl border border-slate-400/35 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-[#3531cf] focus:ring-2 focus:ring-[#3531cf]/30"
-            onChange={(event) =>
-              handleInputChange("password", event.target.value)
-            }
-            value={enteredValues.password}
-          />
-        </div>
+        <BaseInput
+          label="password"
+          id="password"
+          type="password"
+          name="password"
+          onBlur={() => handleInputBlur("password")}
+          onChange={(event) => handleInputChange("email", event.target.value)}
+          value={enteredValues.password}
+          error={passwordIsInvalid && "Please enter a valid password!"}
+        />
       </div>
 
       <div className="mt-5 flex justify-end gap-3">
