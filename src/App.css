@@ -273,9 +273,9 @@ body {
 .font-bold {
   font-weight: 700;
 }
-.font-inherit {
+/* .font-inherit {
   font: inherit;
-}
+} */
 .font-roboto-condensed {
   font-family: "Raleway", sans-serif;
 }

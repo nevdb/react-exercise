@@ -24,7 +24,7 @@ export default function NavBar() {
       >
         <div className="flex min-h-16 items-center justify-between gap-3 py-2">
           <div className="text-base font-bold tracking-[0.16em] text-white">
-            TIETO INSPIRED
+            INSPIRED
           </div>
 
           {/* Links */}

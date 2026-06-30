@@ -1,24 +1,24 @@
+import { useRef } from "react";
 import { useState } from "react";
 
 export default function Login() {
-  // const [enteredEmail, setEnteredEmail] = useState("");
-  // const [enteredPassword, setEnteredPassword] = useState("");
+  const [emailIsInvalid, setEmailIsInvalid] = useState(false);
 
-  const [enteredValues, setEnteredValues] = useState({
-    email: "",
-    password: "",
-  });
+  const email = useRef();
+  const password = useRef();
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("Submitted!", enteredValues);
-  }
 
-  function handleInputChange(identifier, value) {
-    setEnteredValues((prevValues) => ({
-      ...prevValues,
-      [identifier]: value,
-    }));
+    const enteredEmail = email.current.value;
+    const enteredPassword = password.current.value;
+
+    const emailIsValid = enteredEmail.includes("@");
+
+    if (!emailIsValid) {
+      setEmailIsInvalid(true);
+      return;
+    }
   }
 
   return (
@@ -41,9 +41,11 @@ export default function Login() {
             type="email"
             name="email"
             className="w-full rounded-xl border border-slate-400/35 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-[#3531cf] focus:ring-2 focus:ring-[#3531cf]/30"
-            onChange={(event) => handleInputChange("email", event.target.value)}
-            value={enteredValues.email}
+            ref={email}
           />
+          <div className="text-red-600">
+            {emailIsInvalid && <p>Please enter a valid email address! </p>}
+          </div>
         </div>
 
         <div>
@@ -58,10 +60,7 @@ export default function Login() {
             type="password"
             name="password"
             className="w-full rounded-xl border border-slate-400/35 bg-slate-900 px-3 py-2 text-sm text-slate-100 outline-none transition focus:border-[#3531cf] focus:ring-2 focus:ring-[#3531cf]/30"
-            onChange={(event) =>
-              handleInputChange("password", event.target.value)
-            }
-            value={enteredValues.password}
+            ref={password}
           />
         </div>
       </div>
