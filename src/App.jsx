@@ -18,6 +18,7 @@ import PlacePicker from "./pages/PlacePicker";
 import Quiz from "./pages/Quiz";
 import Counter from "./pages/Counter";
 import Users from "./pages/Users.jsx";
+import Opinions from "./pages/OpinionsPage.jsx";
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
           <Route path="quiz" element={<Quiz />} />
           <Route path="counter" element={<Counter />} />
           <Route path="users" element={<Users />} />
+          <Route path="opinions" element={<Opinions />} />
 
           {/* 404 fallback */}
           <Route path="*" element={<h1>Not Found</h1>} />

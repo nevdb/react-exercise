@@ -1,0 +1,67 @@
+{
+  "opinions": [
+    {
+      "id": 1782905120938,
+      "votes": 5,
+      "userName": "Nevena",
+      "title": "new color",
+      "body": "new color disabled try"
+    },
+    {
+      "id": 1782905097345,
+      "votes": 0,
+      "userName": "Nevena",
+      "title": "hello",
+      "body": "Let's try a new background color"
+    },
+    {
+      "id": 1782904916106,
+      "votes": 0,
+      "userName": "Nevena",
+      "title": "helloooo 123",
+      "body": "Let's write another comment"
+    },
+    {
+      "id": 1782904885662,
+      "votes": 0,
+      "userName": "Nevena",
+      "title": "hellooo",
+      "body": "Let's write another comment"
+    },
+    {
+      "id": 1782904844757,
+      "votes": 0,
+      "userName": "Nevena",
+      "title": "heyhheyehy",
+      "body": "Let's write another comment"
+    },
+    {
+      "id": 1782904813215,
+      "votes": 0,
+      "userName": "Nevena",
+      "title": "New comment",
+      "body": "Let's write another comment"
+    },
+    {
+      "id": 1782903760009,
+      "votes": 0,
+      "userName": "Nevena",
+      "title": "hey there",
+      "body": "how are you today?"
+    },
+    {
+      "id": 1,
+      "userName": "Maximilian Schwarzmüller",
+      "title": "Do yourself a favor and learn React!",
+      "body": "React is an amazing JavaScript library!\n\nDespite all it's shortcomings.",
+      "votes": 0
+    },
+    {
+      "id": 2,
+      "userName": "Maximilian Schwarzmüller",
+      "title": "React has more depth than you might first think!",
+      "body": "React is a great library to learn, but it's not just about the basics. Dive deeper!\nFor example with this course!",
+      "votes": 0
+    }
+  ]
+}

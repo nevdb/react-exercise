@@ -80,6 +80,16 @@ export default function NavBar() {
                 Users
               </NavLink>
             </li>
+            <li>
+              <NavLink
+                to="/opinions"
+                className={({ isActive }) =>
+                  `${linkBase} ${isActive ? active : inactive}`
+                }
+              >
+                Opinions
+              </NavLink>
+            </li>
           </ul>
         </div>
       </nav>
